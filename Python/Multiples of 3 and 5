@@ -1,0 +1,26 @@
+=====> MUltiples of 3 or 5 <=====
+
+ => DESCRIÇÃO: Se listarmos todos os números naturais menores que 10 que são múltiplos de 5 ou 3, teremos 3, 5, 6 e 9. A soma deles é 23.
+ Escreva uma solução que retorne todos a soma de todos os números múltiplos de 3 e 5 menores que o valor passado como parâmetro.
+ Se o número for múltiplo tanto de 3 quanto de 5, conte apenas uma vez.
+
+ => ABORDAGEM:
+    - Criar uma variável soma para armazenar o valor da soma dos múltiplos.
+    - Cria um laço de 0 a n, sendo n o parâmetro da função.
+    - Verifica se o elemento é múltiplo tanto de 3 quanto de 5, se for, count += elemento, continue.
+    - Se não se, verifica se é múltiplo de 3, se for, count += elemtno.
+    - Se não se, verifica se é múltiplo de 5, se for, count += elemento.
+    - Retorna valor da soma
+
+ => IMPLEMENTAÇÃO:
+    def solution(number):
+    count = 0
+    for i in range(0,number):
+        if i%3 == 0 and i%5 == 0:
+            count += i
+            continue
+        elif i%3 == 0:
+            count += i
+        elif i%5 == 0:
+            count += i
+    return count

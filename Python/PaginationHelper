@@ -1,0 +1,23 @@
+============ >   PaginationHelper   < =============
+
+ = > DESCRIÇÃO: O intuito do exercício é completar a classe PaginationHelp, que é uma classe de utilidade para ajudar as consultas de informação relacionadas às páginas em um array.
+ A classe é arquitetada para receber um array de valores e um inteiro indicando quantos itens serão permitidos por página. O tipo de valor contido na coleção/array é irrelevante.
+
+ > Temos o construtor da classe, __init__(self,collection,itens_per_page), que recebe um array de itens e um inteiro indicando o número de itens por página.
+ > A função item_count(self) retorna o número de itens da coleção inteira.
+ > A função page_count(self) retorna o número de páginas.
+ > A função page_item_count(self,page_index) retorna o número de itens em uma dada página. O valor base é zero. O método deve retornar -1 para valores page_index que estão out of range
+ > A função page_index(self,item_index) determina em que página um item dado um certo index está. O valor base é zero. O método deve retornar -1 para valores item_index que estão out of range.
+
+
+ = > DESENHANDO O ALGORÍTMO:
+
+ -> Para a função item_count(self):
+    - Basta apenas retornar o tamanho da array com a função length()
+
+ -> Para a função page_count(self):
+    - Retorna o restante da divisão do total de itens por número de itens por página
+
+ -> Para a função page_item_count(self,page_index):
+    - Deve retornar o número de itens da página referente a page_index
+    -

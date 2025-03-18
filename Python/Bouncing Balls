@@ -1,0 +1,37 @@
+============================== > Bouncing Balls < ==============================
+
+= > DESCRIÇÃO:
+ - Uma criança está brincando com uma bola em um certo andar de um prédio. A altura do andar acima do solo, h, é conhecida.
+ - A criança solta a bola pela janela, e quando chega ao chão, ela quica um certo valor (bounce) vezes o valor da altura (sua última altura ou altura atual).
+ - Sua mãe observa por uma janela a certa altura do chão.
+ - A função deve retornar quantas vezes a mãe viu a bola passar pela sua janela.
+ > Condições:
+ ° O parâmetro float 'h' de altura em metros deve ser maior que 0.
+ ° O parametro float 'bounce' de quique deve ser maior que 0 e menor que 1.
+ ° O parâmetro float 'window' de altura da janela deve ser menor que 'h'.
+ > Caso as três condições sejam satisfeitas, retornar um inteiro positivo, caso contrário, retornar -1.
+
+= > ABORDAGEM:
+
+ - Cria condicional para verificar se h é menor que 0 ou bounce é menor que 0 e maior que 1 ou window é maior que h, se alguma for verdadeira, retorna -1. Caso contrário:
+ - Cria variável 'altura_atual', que inicia com o valor de 'h'.
+ - Cria variável 'vista' para amazenar quantidade de vezes que a bola foi vista, tem valor inicial 1, pois ela passa pela janela plo menos 1 vez quando é solta.
+ - Cria laço while que existe até 'altura_atual' > 'window'.
+ - Reescreve valor de 'altura_atual' para ser igual a 'altura_atual' vezes o valor de 'bounce'.
+ - Cria condicional para verificar se 'altura_atual' ainda é maior que 'window'. Se for:
+ - Soma +2 na variável 'vista'.
+ - Quando sair do loop, retorna a variável 'vista'
+
+= > CÓDIGO:
+
+def bouncing_ball(h, bounce, window):
+    if h > 0 and (bounce > 0 and bounce < 1) and window < h:
+        altura_atual = h
+        vista = 1
+        while altura_atual > window:
+            altura_atual = round(altura_atual*bounce,2)
+            if altura_atual > window:
+                vista += 2
+        return vista
+    else:
+        return -1

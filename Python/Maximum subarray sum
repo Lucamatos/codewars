@@ -1,0 +1,102 @@
+============================== > Maximum subarray sum < ===============================
+
+= > DESCRIÇÃO :
+
+ - Dado um número inteiro, a função deve retornar uma string que se parece com o formato de um diamante usando caracteres de *. Devem ser eliminados espaços desnecessários a direita e toda linha deve terminar com \n.
+ - Deve ser retornado None se o input for um número par ou negativo, já que não é possível desenhar um diamante a partir deles.
+ - Exemplo: Um diamante de tamanho 3  *
+                                     ***
+                                      *    que equivale a " *\n***\n *\n"
+
+= > ABORDAGEM :
+
+ - Cria condicional para verificar se o parâmetro é negativo ou par, e retorna None caso for.
+ - Cria string vazia 'diamante' para armazenr os caracteres de impressão do diamante.
+ - Cria variavel 'd_count' para contar o número de caracteres '*' por linha, iniciada com valor 1.
+ - Cria variável 'espaços' para contar o número de espaços por linha, iniciada com n//2 sendo n o número de níveis.
+ - Verifica se o n é igual a 1, sendo o n o número de níveis. Se for, retorna "*\n". Caso contrário:
+ - Cria laço que realiza iterações de 1 a n+1, sendo n o número de niveis.
+ - Verifica se o valor de 'd_count' é menor ou igual ao número de níveis.
+ - Se for, adiciona o caractere " " vezes o valor de 'espaços' + '*' vezes o valor de 'd_count' + "\n" à string 'diamante'.
+ - Subtrai 1 unidade de 'espaços'.
+ - Soma 2 para a variável 'd_count'.
+ - Se for maior,
+ - Atribui o valor de 'espaços' para n//2, sendo n o número de níveis.
+ - Subtrai 2 unidades de 'd_count'.
+ - Subtrai 1 unidade de 'espaços'.
+ - Adiciona o caractere " " vezes o valor de 'espaços'  + '*' vezes o valor de 'd_count' + "\n" à string diamante.
+
+CODIGO ATE AGORA
+def diamond(n):
+    par = n%2
+    if par == 0 or n <= 0:
+        return None
+    diamante = ""
+    d_count = 1
+    espacos = n//2
+    if n == 1:
+        return "*\n"
+    elif n > 1:
+        for i in range(1,n+1):
+            if d_count < (n//2):
+                diamante += " "*espacos + "*"*d_count + "\n"
+                espacos -= 1
+                d_count += 2
+            elif d_count == n:
+                diamante += "*"*n + "\n"
+                espacos = (n//2)
+                d_count -=2
+            elif d_count > (n//2):
+                diamante += " "*espacos + "*"*d_count + "\n"
+                espacos +=1
+                d_count -= 2
+    return diamante
+
+- PROBLEMAS NA LÓGICA:
+ -  Condicionais de verificação de d_count em relação a n para saber se estamos na primeira metade, no meio ou na segunda metade dos niveis do diamante
+
+= > REFORMULANDO ABORDAGEM:
+
+ - Cria condicional para verificar se o parâmetro é negativo ou par, e retorna None caso for.
+ - Cria string vazia 'diamante' para armazenr os caracteres de impressão do diamante.
+ - Cria variável metade = (n//2) + 1
+ - Cria variavel nivel_atual para rastrear o nível atual, começa com 1.
+ - Cria variavel 'd_count' para contar o número de caracteres '*' por linha, iniciada com valor 1.
+ - Cria variável 'espacos' para contar o número de espaços por linha, iniciada com n//2 sendo n o número total de níveis.
+ - Verifica se o n é igual a 1, sendo o n o número de níveis. Se for, retorna "*\n". Caso contrário:
+ - Cria laço que realiza iterações de 1 a n+1, sendo n o número de niveis.
+ - Cria condicional para verificar se está na primeira metade do diamante, nivel_atual < metade . Se estiver:
+ - Adiciona à variavel diamante: " "*espacos + "*"*d_count + "\n".
+ - Subtrai 1 de 'espacos'.
+ - Soma mais 2 para d_count.
+ - Soma mais 1 para nível.
+ - Cria condicional para verificar se é maior ou igual a metade dos níves totais, nivel_atual >= metade. Se estiver:
+ - Adicona à variavel diamante: " "*espacos + "*"*d_count + "\n"
+ - Soma mais 1 para 'espacos'
+ - Subtrai 2 de 'd_count'
+ - Fora do loop, retorna a variável diamante
+
+= > CÓDIGO CORRIGIDO:
+    def diamond(n):
+    par = n%2
+    if par == 0 or n <= 0:
+        return None
+    diamante = ""
+    metade = (n//2) + 1
+    nivel_atual = 1
+    d_count = 1
+    espacos = n//2
+    if n == 1:
+        return "*\n"
+    elif n > 1:
+        for i in range(1,n+1):
+            if nivel_atual < metade:
+                diamante += " "*espacos + "*"*d_count + "\n"
+                espacos -= 1
+                d_count += 2
+                nivel_atual += 1
+            elif nivel_atual >= metade:
+                diamante += " "*espacos + "*"*d_count + "\n"
+                espacos += 1
+                d_count -= 2
+    return diamante

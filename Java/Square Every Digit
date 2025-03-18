@@ -1,0 +1,39 @@
+================= Square Every Digit ====================
+
+===== > PROBLEMA < =====
+
+- É recebido como argumento um variável de tipo int.
+- Devemos retornar o quadrado de cada dígito do número e os concatenar.
+- O retorno deve ser um número inteiro.
+
+===== > RACIOCÍNIO < =====
+
+- Primeiro, para ser possível acessar cada dígito individualmente, devemos converter o a variável de tipo int contendo o valor número para outro tipo. Convertemos para um tipo String.
+- Após isso, criamos uma variável int length para obtermos o tamanho da String, assim, será possivel criarmos um laço para iterar do início ao fim da String.
+- Criamos um array do tipo int, com tamanho igual ao valor da variável length, que servirá para armazenar individualmente cada dígitio, ou caractere, da String.
+- Criamos uma variável de tipo string para que possâmos concatenar cada elemento.
+- Criamos um laço do tipo for, que inícia no índice 0 e vai até onde o índice for menor que o valor da variável length que criamos, para que possamos percorrer toda a string.
+- A cada iteração, atribuímos o elemento do array na posição [i], o valor numérico de caracter da string na posição [i]. Para isso, utilizamos uma fução pera converter cada caracter para int, pegando o seu valor numérico.
+- Em seguida, atribuiímos para cada elemento [i] valor do seu quadrado.
+- Então, convertemos o inteiro na posição [i] para String novamene e o concatenamos na variável string que criamos.
+- Fora do loop, criamos uma nova variável de tipo int e atribuímos para seu valor a string que criamos, utilizando uma função para converte-la para um número inteiro.
+- Por fim, retornamos a variável inteira com a saída esperada.
+
+===== > CÓDIGO < =====
+
+public class SquareDigit {
+
+  public int squareDigits(int n) {
+    String number = String.valueOf(n);
+    int length = number.length();
+    int[] numbers = new int[length];
+    String string = "";
+    for (int i=0 ; i<length; i++) {
+      numbers[i] = Character.getNumericValue(number.charAt(i));
+      numbers[i] *= numbers[i];
+      string += String.valueOf(numbers[i]);
+    }
+    int numberf = Integer.parseInt(string);
+    return numberf;
+  }
+}

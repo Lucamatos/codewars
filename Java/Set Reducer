@@ -1,0 +1,16 @@
+===== > Set Reducer < =====
+*EXERCÍCIO DE RECURSÃO*
+
+ - Descrobrir caso-baso, caso mais simples
+ - Descobrir formas de reduzir o problema, até achar o caso base.
+
+ > DESCRIÇÃO:
+    - Recebe um array de números inteiros variando de 0 a 9, e retorna um novo array contendo quantas vezes cada elemento do array anterior se repete EM SEQUENCIA, então repete novamente o processo até retornar um array contendo um único inteiro. Quando o array chegar a um único inteiro, retornar o inteiro.
+
+ > ABORDAGEM:
+    - Caso-base : quando o array tiver apenas um ou zero elementos, retorna o array.
+    - Caso-recursivo : conta quantas vezes um número inteiro se repete no array e armazena essa contagem em um novo array que será analisado.
+    -
+
+ > IMPLEMENTAÇÃO:
+    -

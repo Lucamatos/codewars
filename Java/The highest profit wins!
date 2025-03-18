@@ -1,0 +1,54 @@
+=====> The highest profit wins! <=====
+
+> DESCRIÇÃO DO PROBLEMA<
+
+- Dado um certo array de inteiros, retornar um array com valor mínimo e máximo respectivamente.
+
+
+> ABORDAGEM <
+
+- Passar por todos elementos do array
+- Verificar se o elemento é o valor mínimo.
+- Verificar se o elemento é o valor máximo.
+- Adicionar valor máximo e mínimo em um array.
+- Retornar o array de máximo e mínimo
+
+
+> IMPLEMENTAÇÃO <
+
+- Inicializa um array de nome miniMax do tipo int de tamanho 2 para guardar os valores mínimo e máximo posteriormente
+- Inicializa as variáveis inteiras min e max
+- Atribui o primeiro elemento do array como valor para as variáveis min e max
+- Realizar um laço para iterar sobre todos elementos do array
+- Realiza condição if para verificar se o elemento atual do array é menor que o valor da variável min. Se for, atribui para a variável min o valor do elemento atual do array
+- Realiza condição if para verificar se o elemento atual do array é maior que o valor da variável max. Se for, atribui para a variável max o valor do elemento atual do array
+- Atribui para o primeiro elemento do array o valor da variável min
+- Atribui para o segundo elemento do array o valor da variável max
+- Retorna o array miniMax
+
+> CÓDIGO <
+
+ class MinMax {
+    public static int[] minMax(int[] arr) {
+      //declara  e inicializa array de tamanho 2 para guardar valor minimo e maximo
+      int [] miniMax = new int[2];
+      //inicializa os valores mínimos e máximos como 0
+      int min = arr[0];
+      int max = arr[0];
+      //laço para passar por todos elementos do array
+      for (int i=0;i<arr.length;i++) {
+        if (arr[i] < min) {
+          min = arr[i];
+        }
+        if (arr[i] > max) {
+          max = arr[i];
+        }
+      }
+      //atribui ao primeiro elemento do array o valor mínimo
+      miniMax[0] = min;
+      //atribui ao segundo elemento do array o valor máximo
+      miniMax[1] = max;
+      //retorna o array contendo os valores mínimo e máximo
+      return miniMax;
+    }
+}

@@ -1,0 +1,74 @@
+DESCRIÇÃO:
+ Dada uma string, devemos criar uma Hashtag para ela seguindo algumas regras.
+ - Deve começar com #
+ - A primeira letra de todas as palavras deve ser maiuscula
+ - Se a string final length maior que 140, retornar false
+ - Se o input ou o resultado final for uma string vazia, retornar false
+
+ABORDAGEM:
+
+ - Verifica se o input a string é vazia, caso sim, retorna false
+ - Adiciona # no output
+
+ - Loop que passa pela string do input
+ - Verifica se o elemento atual é uma letra e se o anterior é um espaço ou vazio,
+ caso seja, capitaliza a letra atual e adiciona na string do output
+ - Verifica se o elemento é diferente de espaço ou vazio, caso sim,
+ adiciona letra atual na string de output
+
+ - Verifica se length da string de output é maior que 140, se for, retorna false
+ - Verifica se string de output é vazia, caso for, retorna false
+
+ALGORÍTMO FINAL:
+
+ - Inicio string de output com #
+ - Verifico se a string é vazia ou contém apenas espaços em branco
+ com a função strip
+ - Realizo um lopp que passa pelos elementos da string
+ - Verifico se o primeiro elemento é uma letra, se for, capitalizo e adiciono
+ na string de output. Continua para próxima iteração
+ - Verifico se o elemento atual uma letra e se seu elemento anterior é um espaço vazio, caso sim, capitalizo e adiciono na string de output. Continua para proxima iteração
+ - Verifico se o elemeto atual é uma letra, caso seja, converto para minúscula e adiciono na string de output
+ - Fora do loop, verifico se o tamanho da string de output é igual a 0 ou maior que 140, caso seja, retorna Falso
+ - Retorna string de output
+
+
+ def generate_hashtag(s):
+
+    output = "#"
+
+    if len(s.strip()) == 0:
+        return False
+
+    for i in range(len(s)):
+        if i == 0 and s[i].isalpha():
+            output += s[i].upper()
+            continue
+
+        if s[i].isalpha() and s[i-1] == " ":
+            output += s[i].upper()
+            continue
+
+        if s[i].isalpha():
+            output += s[i].lower()
+            continue
+
+    if len(output) > 140 or len(output) == 0:
+        return False
+
+    return output
+
+OUTRAS SOLUÇÕES:
+
+ > def generate_hashtag(s):
+    output = "#"
+
+    for word in s.split():
+        output += word.capitalize()
+
+    return False if (len(s) == 0 or len(output) > 140) else output
+
+ > def generate_hashtag(s):
+    ans = '#'+ str(s.title().replace(' ',''))
+    return s and not len(ans)>140 and ans or False
+

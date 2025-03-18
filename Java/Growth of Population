@@ -1,0 +1,31 @@
+============ GROWTH OF POPULATION =================
+
+
+=== > POBLEMA < ===
+
+- Cidade tem 1000 habitantes no começo do ano.
+- A cada ano a população aumenta por 2% mais 50 novos habitantes.
+- É dado um "valor final" de habitantes.
+- Devemos determinar em quantos anos a população alcançará ou passará o "valor final" de habitantes.
+
+
+=== > Raciocínio < ===
+
+- Criar um laço while com a condição de parada da população atual ser maior ou igual a população final.
+- A cada iteração, incrementar 2% da população atual mais 50 habitantes.
+- A cada iteração somar 1 unidade a quantidade de anos.
+
+=== > CÓDIGO < ===
+
+class Arge {
+
+    public static int nbYear(int original_population, double percent, int new_habitants, int final_population) {
+        int current_population = original_population;
+        int years = 0;
+        while (current_population < final_population) {
+          current_population += (current_population*(percent/100)) + new_habitants;
+          years+=1;
+        }
+        return years;
+    }
+}

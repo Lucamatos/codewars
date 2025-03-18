@@ -1,0 +1,113 @@
+ 
+=> DESCRIÇÃO => : Complete a função scramble(s1,s2) para que retorne 'true' se uma porção dos caracteres de s1 podem ser rearranjados para formar s2, caso contrário, retorna falso.
+
+=> NOTAS => :
+    - Apenas letras minúsculas serão usadas. Não haverá pontuação ou dígitos.
+    - Performance deve ser considerada.
+
+
+=> ALGORÍTMO => :
+    - Criamos uma variável 'verificador' igual a 0. A função dela será contar se todos os caracteres em s2 fazem parte de s1.
+    - Criamos duas listas vazias str1 e str2 para armazenar cada caracter das duas Strings.
+    - Criamos um loop que passa por cada um dos caracteres de str1 e str2.
+    - Adicionamos todos caracteres de s1 em str1 e todos caracteres de s2 em str2.
+    - Criamos um loop que passa por toda a lista str2.
+    - Verificamos se o elemento atual está presente em str1, se estiver, soma uma unidade ao verificador.
+    - Fora do loop, verificamos se 'verificador' é igual ao tamanho de str2, se for, retorna True, se não, retorna False.
+
+
+    *** Eu poderia tbm, criar o verificador como uma string vazia, e para cada caracter igual nas 2 strings eu adicionava este caractere na string vazia
+
+    *** O problema principal é que para cada charactere da string1 sendo analisada, eu estou comparando com todos os caracteres da string2 a partir do primeiro. O código deve ser corrigido para que um mesmo caractere da string2 não seja analisado 2 vezes seguidas.
+
+
+=> IMPLEMENTAÇÃO DO ALGORÍTMO => :
+    def scramble(s1, s2):
+        verificador = 0
+        str1 = []
+        str2 = []
+        for char in s1:
+            str1.append(char)
+        for char in s2:
+            str2.append(char)
+        for i in str2:
+            if i in str1:
+                verificador += 1
+        if verificador == len(s2):
+            return True
+        else:
+            return False
+
+=> CÓDIGO ATUAL => :
+    def scramble(s1, s2):
+        verificador = 0
+        str1 = []
+        str2 = []
+        for char in s1:
+            str1.append(char)
+        for char in s2:
+            str2.append(char)
+        c = 0
+        for i in range(len(str1)):
+            for j in range(len(str2)):
+                if str2[j+c] == str[i]:
+                    verificador += 1
+                    break
+                c += 1
+        if verificador == len(s2):
+            return True
+        else:
+            return False
+
+    ***Tentei utilizar a variável 'c' como uma forma de verificar apenas os itens que ainda não foram comparados, porém, como 'c' é incrementado continuamente, o programa acaba caindo no  erro 'index out of range'. Uma solução alternativa a isso, para não verificar os caracteres que já foram vistos, seria a cada carctere analisado, armazenalos em uma lista de caracteres já vistos, e, no momento de verificar se o caracterer de uma string é igual ao de outra, verificar se ele já está na lista de caracteres já vistos. Porém isso geraria um problema para caracteres iguais armazenados nessa lista, então... a cada caractere anlisado, poderímaos remover ele da lista a qual faz parte para que não seja verificado mais de uma vez.
+
+ => CÓDIGO ATUAL => :
+     def scramble(s1, s2):
+        verificador = 0
+        str1 = []
+        str2 = []
+        for char in s1:
+            str1.append(char)
+        for char in s2:
+            str2.append(char)
+        for i in str1:
+            for j in str2:
+                if j == i:
+                    verificador += 1
+                    str2.remove(j)
+                    break
+        if verificador == len(s2):
+            return True
+        else:
+            return False
+
+ => CÓDIGO OTIMIZADO (SEM LOOP ANINHADO) => :
+     def scramble(s1, s2):
+        verificador = 0
+        str1 = list(s1)
+        str2 = list(s2)
+
+        for i in str1:
+            if i in str2:
+                verificador += 1
+                str2.remove(i)
+
+        return verificador == len(s2)
+
+ => OTIMIZAÇÃO DO CÓDIGO UTILZANDO 'COUNTER' => :
+    from collections import Counter
+
+    def scramble(s1, s2):
+        #conta as ocorrências de cada caractere em s1 e s2
+        #as variaveis sao dicionarios em que cada char é um chave e seu valor é a contagem de ocorrências
+        count_s1 = Counter(s1)
+        count_s2 = Counter(s2)
+
+        #passar por cada char em s2 e sua contagem de ocorrencia
+        for char, count in count_s2.items():
+            #se a contagem do char em s1 for menor que a contagem do char em s2, retorna false
+            #pois n terá letras suficientes p formar a palavra
+            if count_s1[char] < count:
+                return False
+
+        return True

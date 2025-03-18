@@ -1,0 +1,36 @@
+====================== > Does my number look big in this? < ===========================
+
+= = > DESCRIÇÃO DO PROBLEMA < = =
+
+ - Um número de Armstrong é um número positivo que equivale a soma de seus próprios digitos, sendo cada um elevado a potência a quantidade de dígitos em uma dada base. Para esse problema iremos considerar a base decimal (de 0 a 9).
+ - Por exemplo, 153, tem 3 digitos e é uma número de Armstrong:
+    1³ + 5³ + 3³ = 1 + 125 + 27 = 153
+ - O desafio é: o programa deve retornar True ou False dependendo se o número dado é um número narcísico na base 10.
+
+
+= = > ABORDAGEM < = =
+
+ - Transformar o número em uma string.
+ - Converter cada caractere da string para int e armazenar em um array 'number'.
+ - Criar variável 'power' que vai armazenar o tamanho do array, que será a potencia decimal utilizada.
+ - Criar variável 'sum' para armazenar a soma dos dígitos do número elevados a potência 'power'.
+ - Cria laço for que itera sobre os elementos do array 'number'.
+ - Dentro do loop: eleva cada número à potência 'power' e soma ao array 'number'.
+ - Fora do loop: verifica se o valor de 'sum' é igual ao número passado para a função.
+ - Se for, retorna true, caso contrário, retorna false
+
+
+= = > CÓDIGO < = =
+
+def narcissistic( value ):
+    f_value = str(value)
+    numbers = [int(i) for i in f_value]
+    power = len(numbers)
+    sum = 0
+    for i in numbers:
+        sum += i**power
+    if sum == value:
+        return True
+    else:
+        return False
+

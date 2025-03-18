@@ -1,0 +1,32 @@
+ ===== > DUPLICATE ENCODER < =====
+
+ => DESCRIÇÃO: Dada uma determinada string, converte-la para uma nova string em que cada caráctere é "(" se ele apareceu apenas uma vez na sring original ou ")" se ele apareceu mais de uma vez na string original.
+
+ => ABORDAGEM:
+    - Converte todos os caracteres da string para maiusculas
+    - Cria string vazia res = "" para representar a string convertida e adicionar os novos caracteres posteriormente.
+    - Criar um laço externo for que passa por todos elementos da string original.
+    - Inicializa uma variável count para verificar a aparição de um caractere mais de uma vez.
+    - Cria um laço interno for que passa por todos os elementos da string original.
+    - Cria condição dentro do laço interno, que compara o caractere atual do laço interno com o caractere atual do laço externo.
+    - Se forem iguais, adiciona uma unidade a variável count.
+    - Fora do loop INTERNO, depois de comparar o caractere atual do laço interno com todos os outros caracteres da string, verifica se ele apareceu mais de uma vez através da variável count.
+    - Cria condição e verifica se count é maior que 1. Não fazemos maior ou igual a um pq não queremos considerar o caso em que um caractere é igual a ELE MESMO, por conta do loop interno iniciar no mesmo caractere do loop externo.
+    - Se for maior que 1, concatena ")" na String vazia 'res'.
+    - Se for menor que 2, concatena "(" na String vazia 'res'.
+
+=> CÓDIGO:
+
+ def duplicate_encode(word):
+    word = word.upper()
+    res = ""
+    for i in word:
+        count = 0
+        for j in word:
+            if i == j:
+                count += 1
+        if count >= 2:
+            res += ")"
+        elif count < 2:
+            res += "("
+    return res

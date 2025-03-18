@@ -1,0 +1,94 @@
+=====> Enough is Enough! <=======
+
+> Descrição do problema:
+    - Dada uma certa lista de números inteiros e um número n inteiro, cada elemento da lista pode se repetir um máximo de n vezes. O programa deve retornar uma lista em que cada elemento se repete NO MÁXIMO n vezes.
+
+> Abordagem:
+    - Iterar sobre o array.
+    - Determinar os elementos do array, sem considerar as repetições deles.
+    - Verificar quantas vezes eles se repetem.
+    - Se o número de repetições do elemento for maior que n vezes, remover elemento do array.
+    - Retornar o array formatado.
+
+> Forma de implementação:
+    - Declara um ArrayList list
+    - Armazena os elementos do array em list
+    - Criar um loop externo que verifica 1 elemento por vez.
+        - Inicializar variável de controle que verifica se o número se repetiu n vezes. - - Criar um segundo loop que compara o elemento da iteração externa com os outros elementos no array(verifica a partir do elemento seguinte do elemento do loop externo).
+            - Se o elemento da iteração interna é igual ao da externa, adiciona uma unidade a variável de controle.
+                - Se a variável de controle ultrapassar o número máximo de elementos repetidos
+                    - Remove o elemento do array
+                    - Decresce o índice em uma unidade para ajustalo após remoção
+    - Converte o ArrayList list novamente para um array de inteiros
+    - Retorna o array.
+
+CÓDIGO ATUAL:
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class EnoughIsEnough {
+    public static int[] deleteNth(int[] elements, int maxRep) {
+        // Cria um ArrayList para gerenciar os elementos
+        ArrayList<Integer> list = new ArrayList<>();
+      //Adiciona os elementos da lista no ArrayList
+        for (int i : elements) {
+            list.add(i);
+        }
+        // Loop externo para verificar cada elemento
+        for (int i = 0; i < list.size(); i++) {
+          //inicializa variável de controle
+            int x = 0;
+            // Loop interno para comparar os elementos com o elemento do loop externo
+            for (int j = 0; j < list.size(); j++) {
+              //verifica se o elemento atual do loop interno é igual ao elemento atual do externo
+                if (list.get(i).equals(list.get(j))) {
+                  //se for, incrementa a variável de controle em uma unidade
+                    x++;
+                  //se os elementos forem iguais e a variável de controle ultrapassar o nº máx. de elementos repetidos
+                    if (x > maxRep) {
+                      //remove o elemento da lista
+                        list.remove(j);
+                        j--; // Ajusta o índice após a remoção
+                    }
+                }
+            }
+        }
+        // Converte ArrayList de volta para array de int
+        int[] result = list.stream().mapToInt(Integer::intValue).toArray();
+        //retorna a lista de elementos refatorada
+        return result;
+    }
+}
+
+SOLUÇÃO UTILIZANDO HASHMAP (EVITA LOOPS INTERNOS):
+import java.util.ArrayList;
+import java.util.HashMap;
+
+public class EnoughIsEnough {
+    public static int[] deleteNth(int[] elements, int maxRep) {
+        // Cria um HashMap para acompanhar a contagem de ocorrências de cada elemento
+        HashMap<Integer, Integer> elementCount = new HashMap<>();
+        // Cria um ArrayList para armazenar o resultado
+        ArrayList<Integer> resultList = new ArrayList<>();
+
+        // Itera pelos elementos do array original
+        for (int element : elements) {
+            // Obtém a contagem atual do elemento no HashMap
+            int count = elementCount.getOrDefault(element, 0);
+
+            // Se a contagem for menor que o número máximo permitido de repetições
+            if (count < maxRep) {
+                // Adiciona o elemento ao resultado
+                resultList.add(element);
+                // Incrementa a contagem do elemento no HashMap
+                elementCount.put(element, count + 1);
+            }
+        }
+
+        // Converte o ArrayList de volta para um array de int
+        int[] result = resultList.stream().mapToInt(Integer::intValue).toArray();
+        // Retorna o array resultante
+        return result;
+    }
+}
+

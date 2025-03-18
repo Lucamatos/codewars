@@ -1,0 +1,35 @@
+==== > You're a square! < ====
+
+=== > PROBLEMA < ===
+
+- Dado um número inteiro, determinar se ele é um quadrado perfeito.
+- Quadrado perfeito é um número natural que se extrairmos a raiz quadrada, possui como resultado outro número natural.
+- Números naturais são número inteiros positivos
+
+=== > RACIOCÍNIO < ===
+
+- Importamos java.lang.Math
+- Declaramos uma variável square de tipo double a atribuímos a ela uma operação que encontra o quadrado do número passado como argumento pela função.
+- Declaramos uma variável valid de tipo double, que tem como função verificar se o quadrado do número passado como argumento é um quadrado perfeito. Para isso, atribúimos a variável valid a operação que retorna o resto da divisão entre o número e o seu quadrado.
+- Em seguidas, criamos uma condição para verificar se o número passado é 0. Caso seja, retornamos true.
+- Depois, criamos outra condição para verificar se o valor de valid é igual a 0, representando que o quadrado do número é um quadrado perfeito. Caso a condição seja satisfeita, retornamos true.
+- Depois criamos um else, para caso nenhuma das condições acima sejam satisfeitas, retornamos false.
+
+==== > CÓDIGO < ====
+
+import java.lang.Math;
+public class Square {
+    public static boolean isSquare(int n) {
+      double square = Math.sqrt(n);
+      double valid = n%square;
+        if (n == 0) {
+          return true;
+        }
+        if (valid == 0) {
+          return true;
+        }
+        else {
+          return false;
+        }
+    }
+}

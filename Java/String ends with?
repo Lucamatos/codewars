@@ -1,0 +1,57 @@
+====== > String ends with? < ======
+
+==== > PROBLEMA < ====
+
+- A função recebe dois argumentos de tipo String, e deve ser verificado se a string do primeiro argumento termina com os caracteres da string do segundo argumento.
+- Se sim, retorna true, caso contrário, retorna false.
+
+==== > RACIOCÍNIO < ====
+
+ > Método simples utilizando a função endsWith():
+
+    - Criamos um condicional para verificar se a string termina com os caracteres.
+    - Dentro da condição verificamos a seguinte operação: str.endsWith(ending), caso seja satisfeita, retorna true, caso contrário, retorna false.
+
+ > Método complexo sem utilizar a função endsWith():
+
+    - Criamos um array tipo char que representa a primeira String passada como argumento pelo método, para que possamos iterar sobre e acessar seus elementos.
+    - Criamos um array tipo achar que representa a seguda String passada como argumento pelo método, para que possamos iterar sobre e acessar seus elementos.
+    - Criamos uma variável ending_length de tipo int, que representa o tamanho da string ending.
+    - Criamos uma variável start de tipo int, e atribuímos a operação de subtração do tamanho da String ending do tamanho da String str, para obtermos um valor que representa o índice em que deveramos começar a primeira iteração da String a ser verificada.
+    - Criamos uma condicional para verificarmos se a string sendo analisado é maior ou igual que a que estamos comparando.
+    - Caso seja satisfeita, executamos as etapas descritas abaixo, caso não entre dentro da condição, o programa retorna false.
+    - Criamos um laço for com múltiplas variáveis de controle, que vai nos permitir acessar as duas estruturas de dados relacionadas. Inicializamos a variável i em 'start' para determinar onde a comparação eve começar no array string, e inicializamos a vriável j em 0 para começar no índice incial do array end.
+    - Iremos comparar o elemento do array string sendo acessado na atual iteração com o elemento do array end send acessado na atual iteração. Caso sejam diferentes retorna falso
+    - Ao sair do laço, verificamos se resultado == ending, caso for, retornamos true, caso contrário, retornamos false.
+
+==== > CÓDIGO MÉTODO SIMPLES < ====
+
+public class Kata {
+  public static boolean solution(String str, String ending) {
+    if (str.endsWith(ending)) {
+      return true;
+    }
+    return false;
+  }
+}
+
+==== > CÓDIGO MÉTODO COMPLEXO < ====
+
+public class Kata {
+  public static boolean solution(String str, String ending) {
+    char [] string = str.toCharArray();
+    char [] end = ending.toCharArray();
+    int ending_length = ending.length();
+    int str_length = str.length();
+    int start = str_length - ending_length;
+    if (str_length >= ending_length) {
+      for (int i = start, j=0 ; i < str_length;i++,j++) {
+      if (string[i] != end[j]) {
+        return false;
+      }
+    }
+      return true;
+    }
+    return false;
+  }
+}
