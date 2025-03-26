@@ -1,0 +1,19 @@
+As2{Be4C5[BCo3(CO2)3]2}4Cu5
+
+ptrn1 = As2        antes de '{'
+ptrn2 = Be4C5      entre '{' e '['
+ptrn3 = BCo3       entre '[' e '('
+ptrn4 = CO2        entre '(' e ')'
+ptrn5 = 3          entre ')' e ']'
+ptrn6 = 2          entre ']' e '}'
+ptrn7 = 4Cu5       após '}'
+
+
+mols {
+As : 13,
+Be : 1,
+C  : 1,
+B  : 1,
+Co : 1,
+Cu : 1
+}
